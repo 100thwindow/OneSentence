@@ -30,7 +30,7 @@ function Practice() {
     setAiResponse(null);
 
     try {
-      const response = await fetch("http://localhost:3001/api/validate", {
+      const response = await fetch("/api/validate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
