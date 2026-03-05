@@ -1,0 +1,99 @@
+/* Layout container used by both Home and Practice */
+.app-layout {
+  padding: 2rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* Top-level title + subtitle */
+.app-header {
+  text-align: center;
+}
+
+.app-title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.app-subtitle {
+  margin-top: 0.5rem;
+  color: #4b5563;
+}
+
+/* Prompt section */
+.prompt-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.prompt-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.prompt-text {
+  color: #374151;
+}
+
+/* Primary button / link */
+.primary-button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.primary-button:hover {
+  background: #1d4ed8;
+}
+
+/* Practice page - wider layout for textarea + edited version side by side */
+.practice-layout {
+  max-width: 900px;
+}
+
+.practice-header {
+  margin-bottom: 1.5rem;
+}
+
+.textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid #d4d4d8;
+  resize: vertical;
+  font: inherit;
+}
+
+.word-counter {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+/* Save button + footer */
+.practice-footer {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.save-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  background: #16a34a;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background: #15803d;
+}
