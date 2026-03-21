@@ -88,7 +88,7 @@ function Practice() {
             Edited version:
           </div>
           <div style={{ fontStyle: "italic" }}>
-            {aiResponse?.refined || (loading ? "..." : "Send to see the edited sentence here.")}
+            {aiResponse?.refined || (loading ? "..." : "Send to see the refined sentence here.")}
           </div>
         </div>
       </div>
