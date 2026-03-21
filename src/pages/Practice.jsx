@@ -53,73 +53,101 @@ function Practice() {
   };
 
   return (
-    <main className="app-layout practice-layout">
-      <header className="practice-header">
-        {/* <h1 className="app-title">Practice</h1> */}
-        <p className="prompt-text"><strong>Type something and send AI to fix it</strong></p>
-      </header>
-
-      <div style={{ display: "flex", alignItems: "flex-start", flexWrap: "nowrap" }}>
-        <section style={{ flex: "0 1 50%", minWidth: 0, marginRight: "1.5rem" }}>
-          <textarea
-            rows={8}
-            className="textarea"
-            placeholder="Write your answer here..."
-            value={text}
-            onChange={handleChange}
-          />
-          <div className="word-counter">
-            {wordCount} {wordCount === 1 ? "word" : "words"}
-          </div>
-        </section>
-
-        <div
-          style={{
-            flex: "0 1 50%",
-            minWidth: 0,
-            minHeight: "8rem",
-            marginLeft: "1.5rem",
-            padding: "1rem",
-            borderRadius: "0.75rem",
-            background: "#f3f4f6",
-          }}
-        >
-          <div style={{ fontSize: "0.875rem", color: "#4b5563", marginBottom: "0.25rem" }}>
-            Edited version:
-          </div>
-          <div style={{ fontStyle: "italic" }}>
-            {aiResponse?.refined || (loading ? "..." : "Send to see the refined sentence here.")}
-          </div>
-        </div>
+    <div className="practice-page">
+      <div className="practice-page__bg" aria-hidden="true">
+        <span className="practice-page__blob practice-page__blob--1" />
+        <span className="practice-page__blob practice-page__blob--2" />
+        <span className="practice-page__blob practice-page__blob--3" />
       </div>
 
-      <div className="practice-footer">
-        <button
-          type="button"
-          className="save-button"
-          onClick={handleSend}
-          disabled={loading || !text.trim()}
-        >
-          {loading ? "Sending..." : "Send"}
-        </button>
-        <Link to="/">← Back home</Link>
-      </div>
+      <main className="app-layout practice-layout">
+        <header className="practice-header">
+          <p className="prompt-text practice-header__prompt">
+            <strong>Type something and send AI to fix it</strong>
+          </p>
+        </header>
 
-      {error && (
-        <div
-          style={{
-            marginTop: "1.5rem",
-            padding: "1rem",
-            borderRadius: "0.75rem",
-            background: "#fef2f2",
-            border: "1px solid #dc2626",
-            color: "#dc2626",
-          }}
-        >
-          {error}
+        <div className="practice-page__columns">
+          <section className="practice-page__input-col">
+            <textarea
+              rows={8}
+              className="textarea textarea--practice"
+              placeholder="Write your answer here..."
+              value={text}
+              onChange={handleChange}
+            />
+            <div className="word-counter">
+              {wordCount} {wordCount === 1 ? "word" : "words"}
+            </div>
+          </section>
+
+          <div
+            className={`edited-panel ${loading ? "edited-panel--loading" : ""} ${aiResponse?.refined ? "edited-panel--has-result" : ""}`}
+          >
+            <div className="edited-panel__header">
+              <span className="edited-panel__icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 32 32"
+                  width="36"
+                  height="36"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="edited-panel__icon-svg"
+                >
+                  {/* Renk: üstteki prompt ile aynı (currentColor) */}
+                  <g
+                    className="edited-panel__icon-mark"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.75"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="16" cy="16" r="10.5" />
+                    <path strokeWidth="3.25" d="M10 16.5l3.2 3.2L22 11" />
+                  </g>
+                </svg>
+              </span>
+              <span className="edited-panel__label">Edited version</span>
+            </div>
+          <div className="edited-panel__body">
+            {aiResponse?.refined ? (
+              <p className="edited-panel__text" key={aiResponse.refined}>
+                {aiResponse.refined}
+              </p>
+            ) : loading ? (
+              <p className="edited-panel__placeholder edited-panel__placeholder--pulse">
+                Refining your sentence…
+              </p>
+            ) : (
+              <p className="edited-panel__placeholder edited-panel__placeholder--idle">
+                Send to see your refined sentence here.
+              </p>
+            )}
+          </div>
         </div>
-      )}
-    </main>
+        </div>
+
+        <div className="practice-footer">
+          <button
+            type="button"
+            className="save-button save-button--practice"
+            onClick={handleSend}
+            disabled={loading || !text.trim()}
+          >
+            {loading ? "Sending..." : "Send"}
+          </button>
+          <Link to="/" className="practice-back-link">
+            ← Back home
+          </Link>
+        </div>
+
+        {error && (
+          <div className="practice-error" role="alert">
+            {error}
+          </div>
+        )}
+      </main>
+    </div>
   );
 }
 
